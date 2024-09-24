@@ -3,30 +3,29 @@ from django.forms import ModelForm
 from tyoubo_app.models import ItemModel
 
 
-def create_post(request):
+def create_item(request):
     """
     新たなデータを作成する
     """
     post = ItemModel()
     if request.method == 'GET':
         form = RegistItemForm(instance=post)
-        return render(request, 'tyoubo_app/tyoubo_page.html', {'form': form})
+        return render(request, 'tyoubo_app/item_regist_page.html', {'form': form})
     if request.method == 'POST':
         form = RegistItemForm(request.POST, instance=post)
         if form.is_valid():
             post = form.save(commit=False)
             post.save()
-        return redirect('tyoubo_app:read_post')
+        return redirect('tyoubo_app:read_item')
 
-def read_post(request):
+def read_item(request):
     """
     データの一覧を表示する
     """
-    # 全オブジェクトを取得
     items = ItemModel.objects.all().order_by('id')
     return render(request,'tyoubo_app/tyoubo_page.html', {'items': items})  # Template に渡すデータ
 
-def edit_post(request, post_id):
+def edit_item(request, post_id):
     """
     対象のデータを編集する
     """
@@ -41,7 +40,7 @@ def edit_post(request, post_id):
             post.save()
         return redirect('tyoubo_app:tyoubo_page.html')
 
-def delete_post(request, post_id):
+def delete_item(request, post_id):
     post = get_object_or_404(ItemModel, pk=post_id)
     post.delete()
     return redirect('tyoubo_app:tyoubo_page.html')

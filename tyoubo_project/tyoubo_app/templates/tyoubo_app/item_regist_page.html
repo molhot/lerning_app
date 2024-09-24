@@ -7,14 +7,14 @@
 <body>
     <h4>Post の編集</h4>
     {% if post_id %}
-    <form action="{% url 'sample_app:edit_post' post_id=post_id %}" method="post">
+    <form action="{% url 'tyoubo_app:edit_item' post_id=post_id %}" method="post">
     {% else %}
-    <form action="{% url 'sample_app:create_post' %}" method="post">
+    <form action="{% url 'tyoubo_app:create_item' %}" method="post">
     {% endif %}
       {% csrf_token %}
       {{ form }}
           <button type="submit">送信</button>
     </form>
-    <a href="{% url 'sample_app:read_post' %}">戻る</a>
+    <a href="{% url 'tyoubo_app:show_item' %}">戻る</a>
 </body>
 </html>

@@ -11,18 +11,27 @@
         <th>名前</th>
         <th>値段</th>
         <th>種類</th>
+        <th>使用日</th>
       </tr>
     </thead>
     <tbody>
       {% for item in items %}
       <tr>
-        <th>{{ item.name }}</th>
-        <td>{{ post.price }}</td>
-        <td>{{ post.type }}</td>
+        <th>{{ item.itemname }}</th>
+        <td>{{ item.price }}</td>
+        <td>{{ item.type }}</td>
+        <td>{{ item.date }}</td>
         <td>
           <a href="{% url 'tyoubo_app:edit_item' post_id=item.id %}">修正</a>
           <a href="{% url 'tyoubo_app:delete_item' post_id=item.id %}">削除</a>
         </td>
+      </tr>
+      {% empty %}
+      <tr>
+        <th>登録商品はなしです</th>
+        <td>--</td>
+        <td>--</td>
+        <td>--</td>
       </tr>
       {% endfor %}
     </tbody>
