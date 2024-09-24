@@ -37,7 +37,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'tyoubo_app.apps.TyouboAppConfig'
+    'tyoubo_app.apps.TyouboAppConfig',
+    'rest_framework'
 ]
 
 MIDDLEWARE = [
